@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
-import { ContactSchema } from '../models/crmModel';
-
-const Contact = mongoose.model('Contact', ContactSchema);
+import Contact from "../models/crmModel";
 
 export const addNewContact = (req, res) => {
     let newContact = new Contact(req.body);
@@ -33,7 +31,7 @@ export const getContactWithID = (req, res) => {
 }
 
 export const updateContact = (req, res) => {
-    Contact.findOneAndUpdate({_id: req.params.contactID }, req.body, { new: true , useFindAndModify: false} , (err, contact) => {
+    Contact.findOneAndUpdate({ _id: req.params.contactID }, req.body, { new: true, useFindAndModify: false }, (err, contact) => {
         if (err) {
             res.send(err);
         }
@@ -42,7 +40,7 @@ export const updateContact = (req, res) => {
 }
 
 export const deleteContact = (req, res) => {
-    Contact.remove({_id: req.params.contactID }, (err, contact) => {
+    Contact.remove({ _id: req.params.contactID }, (err, contact) => {
         if (err) {
             res.send(err);
         }
